@@ -29,13 +29,13 @@
                         <thead>
                             <tr>
                               <th># </th>
-                                <th>@lang('site.egs-code') </th>
-                                <th>@lang('site.gpc_code') </th>
-                                <th>@lang('site.status') </th>
+                                {{-- <th>@lang('site.egs-code') </th> --}}
+                                <th>GS1 code</th>
+                                {{-- <th>@lang('site.status') </th> --}}
                                 <th>@lang('site.name_ar') </th>
-                                <th>@lang('site.desc_ar') </th>
+                                {{-- <th>@lang('site.desc_ar') </th> --}}
                                 <th>@lang('site.name_en') </th>
-                                <th>@lang('site.desc_en') </th>
+                                {{-- <th>@lang('site.desc_en') </th> --}}
                                 <th>@lang('site.active_from') </th>
                                 <th>@lang('site.active_to') </th>
                             </tr>
@@ -47,15 +47,16 @@
 
                             <tr>
                                 <td>{{ $index + 1}}</td>
-                                <td>{{ $product['itemCode']}}</td>
-                                <td>{{ $product['parentItemCode']}}</td>
+                                {{-- <td>{{ $product['itemCode']}}</td> --}}
+                                {{-- <td>{{ $product['parentItemCode']}}</td>
                                 @if($product['status'] === "Approved")
                                 <td>@lang('site.Approved')</td>
-                                @endif
+                                @endif --}}
+                                <td>{{ $product['codeLookupValue']}}</td>
                                 <td>{{ $product['codeNameSecondaryLang']}}</td>
-                                <td>{{ $product['descriptionSecondaryLang']}}</td>
+                                {{-- <td>{{ $product['descriptionSecondaryLang']}}</td> --}}
                                 <td>{{ $product['codeNamePrimaryLang']}}</td>
-                                <td>{{ $product['descriptionPrimaryLang']}}</td>
+                                {{-- <td>{{ $product['descriptionPrimaryLang']}}</td> --}}
                                 <td>{{ \Carbon\Carbon::parse($product['activeFrom'])->format('d-m-Y')}}</td>
                                 @if($product['activeTo'] == NULL)
                                 <td></td>

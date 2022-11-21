@@ -17,7 +17,6 @@ class ProductsController extends Controller
     public function index()
     {
 
-
     }
 
     /**
@@ -290,11 +289,11 @@ class ProductsController extends Controller
         $product = Http::withHeaders([
             "Authorization" => 'Bearer ' . $response['access_token'],
             "Content-Type" => "application/json",
-        ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
-
+        ])->get("https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/GS1/codes?TaxpayerRIN=" . auth()->user()->details->company_id . "&OnlyActive=true&Ps=1000&Pn=1");
+        // ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
 
         $products = $product['result'];
-
+        // return $products;
         return view('products.active', compact('products'));
 
     }

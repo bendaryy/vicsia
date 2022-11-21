@@ -52,7 +52,7 @@ class manageDoucumentController extends Controller
         $allMeta = $showInvoices['metadata'];
         $taxId = auth()->user()->details->company_id;
 
-        return view('invoices.receivedInvoices', compact('allInvoices', 'allMeta', 'taxId','id'));
+        return view('invoices.receivedInvoices', compact('allInvoices', 'allMeta', 'taxId', 'id'));
     }
 
     public function invoiceDollar(Request $request)
@@ -131,7 +131,7 @@ class manageDoucumentController extends Controller
         for ($i = 0; $i < count($request->quantity); $i++) {
             $Data = [
                 "description" => $request->invoiceDescription[$i],
-                "itemType" => "EGS",
+                "itemType" => "GS1",
                 "itemCode" => $request->itemCode[$i],
                 // "itemCode" => "10003834",
                 "unitType" => "EA",
@@ -203,7 +203,7 @@ class manageDoucumentController extends Controller
         // End Bank payment
 
         $trnsformed = json_encode($invoice, JSON_UNESCAPED_UNICODE);
-        $myFileToJson = fopen("C:\laragon\www\vicsia\EInvoicing\SourceDocumentJson.json", "w") or die("unable to open file");
+        $myFileToJson = fopen("C:\laragon\www\halaltop\EInvoicing\SourceDocumentJson.json", "w") or die("unable to open file");
         fwrite($myFileToJson, $trnsformed);
         return redirect()->route('cer');
 
@@ -284,7 +284,7 @@ class manageDoucumentController extends Controller
         for ($i = 0; $i < count($request->quantity); $i++) {
             $Data = [
                 "description" => $request->invoiceDescription[$i],
-                "itemType" => "EGS",
+                "itemType" => "GS1",
                 "itemCode" => $request->itemCode[$i],
                 // "itemCode" => "10003834",
                 "unitType" => "EA",
@@ -356,7 +356,7 @@ class manageDoucumentController extends Controller
         // End Bank payment
 
         $trnsformed = json_encode($invoice, JSON_UNESCAPED_UNICODE);
-        $myFileToJson = fopen("C:\laragon\www\vicsia\EInvoicing\SourceDocumentJson.json", "w") or die("unable to open file");
+        $myFileToJson = fopen("C:\laragon\www\halaltop\EInvoicing\SourceDocumentJson.json", "w") or die("unable to open file");
         fwrite($myFileToJson, $trnsformed);
         return redirect()->route('cer');
 
@@ -367,11 +367,11 @@ class manageDoucumentController extends Controller
     public function openBat()
     {
 
-        shell_exec('C:\laragon\www\vicsia\EInvoicing/SubmitInvoices2.bat');
-        $path = "C:\laragon\www\vicsia\EInvoicing/FullSignedDocument.json";
-        $path2 = "C:\laragon\www\vicsia\EInvoicing/Cades.txt";
-        $path3 = "C:\laragon\www\vicsia\EInvoicing/CanonicalString.txt";
-        $path4 = "C:\laragon\www\vicsia\EInvoicing/SourceDocumentJson.json";
+        shell_exec('C:\laragon\www\halaltop\EInvoicing/SubmitInvoices2.bat');
+        $path = "C:\laragon\www\halaltop\EInvoicing/FullSignedDocument.json";
+        $path2 = "C:\laragon\www\halaltop\EInvoicing/Cades.txt";
+        $path3 = "C:\laragon\www\halaltop\EInvoicing/CanonicalString.txt";
+        $path4 = "C:\laragon\www\halaltop\EInvoicing/SourceDocumentJson.json";
 
         $fullSignedFile = file_get_contents($path);
 
@@ -392,7 +392,7 @@ class manageDoucumentController extends Controller
             unlink($path2);
             unlink($path3);
             unlink($path4);
-            return redirect()->route('sentInvoices','1')->with('success', 'تم تسجيل الفاتورة بنجاح ');
+            return redirect()->route('sentInvoices', '1')->with('success', 'تم تسجيل الفاتورة بنجاح ');
             // return $invoice->body();
 
         } else {
@@ -401,7 +401,7 @@ class manageDoucumentController extends Controller
             unlink($path3);
             unlink($path4);
             // return $invoice->body();
-            return redirect()->route('sentInvoices','1')->with('error', "يوجد خطأ فى الفاتورة من فضلك اعد تسجيلها");
+            return redirect()->route('sentInvoices', '1')->with('error', "يوجد خطأ فى الفاتورة من فضلك اعد تسجيلها");
         }
     }
 
@@ -418,7 +418,7 @@ class manageDoucumentController extends Controller
         $product = Http::withHeaders([
             "Authorization" => 'Bearer ' . $response['access_token'],
             "Content-Type" => "application/json",
-        ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
+        ])->get("https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/GS1/codes?TaxpayerRIN=" . auth()->user()->details->company_id . "&OnlyActive=true&Ps=1000&Pn=1");
 
         $products = $product['result'];
         $codes = DB::table('products')->where('status', 'Approved')->get();
@@ -443,7 +443,7 @@ class manageDoucumentController extends Controller
         $product = Http::withHeaders([
             "Authorization" => 'Bearer ' . $response['access_token'],
             "Content-Type" => "application/json",
-        ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
+        ])->get("https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/GS1/codes?TaxpayerRIN=" . auth()->user()->details->company_id . "&OnlyActive=true&Ps=1000&Pn=1");
 
         $products = $product['result'];
         $codes = DB::table('products')->where('status', 'Approved')->get();
@@ -466,7 +466,7 @@ class manageDoucumentController extends Controller
         $product = Http::withHeaders([
             "Authorization" => 'Bearer ' . $response['access_token'],
             "Content-Type" => "application/json",
-        ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
+        ])->get("https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/GS1/codes?TaxpayerRIN=" . auth()->user()->details->company_id . "&OnlyActive=true&Ps=1000&Pn=1");
 
         $products = $product['result'];
         $codes = DB::table('products')->where('status', 'Approved')->get();
@@ -491,7 +491,7 @@ class manageDoucumentController extends Controller
         $product = Http::withHeaders([
             "Authorization" => 'Bearer ' . $response['access_token'],
             "Content-Type" => "application/json",
-        ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
+        ])->get("https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/GS1/codes?TaxpayerRIN=" . auth()->user()->details->company_id . "&OnlyActive=true&Ps=1000&Pn=1");
 
         $products = $product['result'];
         $codes = DB::table('products')->where('status', 'Approved')->get();
@@ -514,7 +514,7 @@ class manageDoucumentController extends Controller
         $product = Http::withHeaders([
             "Authorization" => 'Bearer ' . $response['access_token'],
             "Content-Type" => "application/json",
-        ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
+        ])->get("https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/GS1/codes?TaxpayerRIN=" . auth()->user()->details->company_id . "&OnlyActive=true&Ps=1000&Pn=1");
 
         $products = $product['result'];
         $codes = DB::table('products')->where('status', 'Approved')->get();
@@ -539,7 +539,7 @@ class manageDoucumentController extends Controller
         $product = Http::withHeaders([
             "Authorization" => 'Bearer ' . $response['access_token'],
             "Content-Type" => "application/json",
-        ])->get('https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/requests/my?Active=true&Status=Approved&PS=1000');
+        ])->get("https://api.invoicing.eta.gov.eg/api/v1.0/codetypes/GS1/codes?TaxpayerRIN=" . auth()->user()->details->company_id . "&OnlyActive=true&Ps=1000&Pn=1");
 
         $products = $product['result'];
         $codes = DB::table('products')->where('status', 'Approved')->get();
@@ -679,7 +679,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.requestCancelled', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.requestCancelled', compact('allInvoices', 'allMeta', 'id'));
     }
 
     public function companiesRequestcancelledDoc($id)
@@ -698,7 +698,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.companiesRequestCancelled', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.companiesRequestCancelled', compact('allInvoices', 'allMeta', 'id'));
     }
 
     public function cancelledDoc($id)
@@ -717,7 +717,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.showCancelled', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.showCancelled', compact('allInvoices', 'allMeta', 'id'));
     }
 
     public function companyCancelledDoc($id)
@@ -736,7 +736,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.showCompanyCancelled', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.showCompanyCancelled', compact('allInvoices', 'allMeta', 'id'));
     }
 
     public function rejected($id)
@@ -755,7 +755,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.showRejected', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.showRejected', compact('allInvoices', 'allMeta', 'id'));
     }
 
     public function companyRejected($id)
@@ -774,7 +774,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.companyRejected', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.companyRejected', compact('allInvoices', 'allMeta', 'id'));
     }
 
     public function requestCompanyRejected($id)
@@ -793,7 +793,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.RequestCompanyRejected', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.RequestCompanyRejected', compact('allInvoices', 'allMeta', 'id'));
     }
 
     public function requestRejected($id)
@@ -812,7 +812,7 @@ class manageDoucumentController extends Controller
         $allInvoices = $showInvoices['result'];
 
         $allMeta = $showInvoices['metadata'];
-        return view('invoices.RequestRejected', compact('allInvoices', 'allMeta','id'));
+        return view('invoices.RequestRejected', compact('allInvoices', 'allMeta', 'id'));
     }
 
 }

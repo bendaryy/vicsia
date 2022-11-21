@@ -552,7 +552,7 @@
                                                         <select name="itemCode[]" id="itemCode"
                                                             class="form-control form-control-sm form-select single-select" required>
                                                             @foreach ($products as $product)
-                                                                <option value="{{ $product['itemCode'] }}"
+                                                                <option value="{{ $product['codeLookupValue'] }}"
                                                                     style="font-size: 20px">
                                                                     {{ $product['codeNameSecondaryLang'] }}
                                                             @endforeach
@@ -841,7 +841,7 @@
                                 <select name="itemCode[]" id="itemCode"
                                                             class="form-control form-control-sm form-select single-select" required>
                                                             @foreach ($products as $product)
-                                                                <option value="{{ $product['itemCode'] }}"
+                                                                <option value="{{ $product['codeLookupValue'] }}"
                                                                     style="font-size: 20px">
                                                                     {{ $product['codeNameSecondaryLang'] }}
                                                             @endforeach
