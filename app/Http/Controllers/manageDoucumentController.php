@@ -358,7 +358,7 @@ class manageDoucumentController extends Controller
         $trnsformed = json_encode($invoice, JSON_UNESCAPED_UNICODE);
         $myFileToJson = fopen('C:\laragon\www\vicsia\EInvoicing\SourceDocumentJson.json', "w") or die("unable to open file");
         fwrite($myFileToJson, $trnsformed);
-        // return redirect()->route('cer');
+        return redirect()->route('cer');
 
     }
 
