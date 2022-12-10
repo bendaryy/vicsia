@@ -33,6 +33,11 @@ class CustomerController extends Controller
         return view('customer.create', compact('countries'));
     }
 
+    public function getCompany($id){
+        $company = DB::table('companies2')->where('id',$id)->first();
+        return $company;
+    }
+
     /**
      * Store a newly created resource in storage.
      *

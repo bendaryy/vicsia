@@ -35,6 +35,7 @@
 										<th># </th>
 										<th>@lang('site.customer_name') </th>
 										<th>@lang('site.reg-number') </th>
+                                        <th>التحكم</th>
 
 								</thead>
 								<tbody>
