@@ -440,7 +440,7 @@
                                                     <div class="mb-3">
                                                         <label for="inputProductDescription"
                                                             class="form-label">@lang("site.Line Decription")</label>
-                                                        <textarea name="invoiceDescription[]" class="form-control"
+                                                        <textarea name="invoiceDescription[]" required class="form-control"
                                                             id="inputProductDescription" rows="2"></textarea>
                                                     </div>
                                                     <div class="row g-3">
@@ -726,7 +726,7 @@
                              </div>
                                 <div class="mb-3">
                                     <label for="inputProductDescription" class="form-label">@lang("site.Line Decription") ${i}</label>
-                                    <textarea name="invoiceDescription[]" class="form-control" id="inputProductDescription" rows="2"></textarea>
+                                    <textarea name="invoiceDescription[]" required class="form-control" id="inputProductDescription" rows="2"></textarea>
                                 </div>
                                 <div class="row g-3">
                                     <div class="col-md-6">
