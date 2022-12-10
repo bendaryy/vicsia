@@ -468,6 +468,7 @@
                                                             <select name="t1subtype[]" required id="t1subtype"
                                                                 class="form-control form-control-sm single-select">
 
+                                                                <option value="V009">سلع عامة</option>
                                                                 @foreach ($taxTypes as $type)
                                                                     @if ($type->parent === 'T1')
                                                                         <option value="{{ $type->code }}"
@@ -493,6 +494,7 @@
                                                                 class="form-label">@lang("site.Tax t4 Type")</label>
                                                             <select name="t4subtype[]" required id="t4subtype"
                                                                 class="form-control form-control-sm single-select">
+                                                                <option value="W002" style="font-size: 15px;width: 100px;">التوريدات</option>
                                                                 @foreach ($taxTypes as $type)
                                                                     @if ($type->parent === 'T4')
                                                                         <option value="{{ $type->code }}"
@@ -746,6 +748,7 @@
                                     <div class="col-md-6">
                                         <label for="inputProductTitle" class="form-label">@lang("site.Tax added Type")</label>
                                         <select name="t1subtype[]" required id="t1subtype" class="form-control form-control-sm single-select">
+                                            <option value="V009">سلع عامة</option>
                                             @foreach ($taxTypes as $type)
                                                 @if ($type->parent === 'T1')
                                                     <option value="{{ $type->code }}" style="font-size: 15px;width: 100px;">
@@ -765,7 +768,7 @@
                                     <div class="col-md-6">
                                         <label for="inputProductTitle" class="form-label">@lang("site.Tax t4 Type")</label>
                                         <select name="t4subtype[]" required id="t4subtype" class="form-control form-control-sm single-select">
-
+                                            <option value="W002" style="font-size: 15px;width: 100px;">التوريدات</option>
                                             @foreach ($taxTypes as $type)
                                                 @if ($type->parent === 'T4')
                                                     <option value="{{ $type->code }}" style="font-size: 15px;width: 100px;">
