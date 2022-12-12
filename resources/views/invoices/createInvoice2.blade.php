@@ -851,12 +851,12 @@
                         '");var discount = document.getElementById("discountAmount' + i +
                         '");var T2rate = document.getElementById("rate' + i +
                         '");var t2valueEnd = document.getElementById("t2' + i +
-                        '");var T4rate = document.getElementById("t4rate' + i +
+                        '");var T4ValueEnd = document.getElementById("t4rate' + i +
                         '");var t4Amount = document.getElementById("t4Amount' + i +
                         '");var totalItemDiscount = document.getElementById("totalItemsDiscount' + i +
                         '");var itemsDiscount = document.getElementById("itemsDiscount' + i +
                         '");var allSalesTotal =  salesTotal.value = (quantity' + i +
-                        '.value * amounEGP.value).toFixed(2);var allNetTotal = netTotal.value = (salesTotal.value - discount.value).toFixed(2);t2valueEnd.value = ((allNetTotal* T2rate.value) / 100).toFixed(2);t4Amount.value = ((allNetTotal* t4rate.value) / 100).toFixed(2);totalItemDiscount.value = (parseFloat(netTotal.value) + parseFloat(t2valueEnd.value) - parseFloat(t4Amount.value) - parseFloat(itemsDiscount.value)).toFixed(2);};  </' + 'script>').appendTo('#test123');
+                        '.value * amounEGP.value).toFixed(2);var allNetTotal = netTotal.value = (salesTotal.value - discount.value).toFixed(2);t2valueEnd.value = ((allNetTotal* T2rate.value) / 100).toFixed(2);t4Amount.value = ((allNetTotal* T4ValueEnd.value) / 100).toFixed(2);totalItemDiscount.value = (parseFloat(netTotal.value) + parseFloat(t2valueEnd.value) - parseFloat(t4Amount.value) - parseFloat(itemsDiscount.value)).toFixed(2);};  </' + 'script>').appendTo('#test123');
                 $(document).on('click', '.btn_remove', function() {
                     var button_id = $(this).attr("id");
                     $("#row" + button_id + "").remove()
