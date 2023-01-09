@@ -166,3 +166,18 @@ Route::get('getcompany/{id}', [CustomerController::class, 'getCompany'])->name('
 
 // Remote Server
 Route::get('updatestatus', [remote::class, 'updatestatus'])->name('updatestatus');
+
+
+// draft
+route::post('draft', [manageDoucumentController::class, 'draft'])->name('draft');
+route::get('alldraft', [manageDoucumentController::class, 'showDraft'])->name('showDraft');
+route::post('sendDraft/{id}', [manageDoucumentController::class, 'sendDraftData'])->name('sendDraftData');
+route::get('showdetalils/{id}', [manageDoucumentController::class, 'showDraftDetails'])->name('showDraftDetails');
+route::delete('deletedraft/{id}', [manageDoucumentController::class, 'deleteDraft'])->name('deleteDraft');
+
+//sent
+route::get('sentofdraft', [manageDoucumentController::class, 'SentInvoicesFromDraft'])->name('sentofdraft');
+route::get('searchInSentInv', [manageDoucumentController::class, 'searchInSentInv'])->name('searchInSentInv');
+route::get('showsentdetails/{uuid}', [manageDoucumentController::class, 'showSentInvDetails'])->name('showsentdetails');
+route::delete('deletesent/{id}', [manageDoucumentController::class, 'deleteSentInv'])->name('deleteSentInv');
+

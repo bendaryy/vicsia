@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="{{ LaravelLocalization::getCurrentLocale() }}"
-    dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}"
+<html lang="{{ LaravelLocalization::getCurrentLocale() }}" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}"
     class="color-sidebar sidebarcolor3 color-header headercolor5">
 
 <head>
@@ -117,10 +116,10 @@
                         <div class="menu-title">@lang('site.documents')</div>
                     </a>
                     <ul>
-                        <li> <a href="{{ route('sentInvoices','1') }}">
+                        <li> <a href="{{ route('sentInvoices', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>@lang('site.sent_documents')</a>
                         </li>
-                        <li> <a href="{{ route('receivedInvoices','1') }}">
+                        <li> <a href="{{ route('receivedInvoices', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>@lang('site.received_documents')</a>
                         </li>
                         <li> <a href="{{ route('createInvoice') }}">
@@ -129,6 +128,28 @@
                         {{-- <li> <a href="{{ route('createInvoiceDollar') }}">
                                 <i class="bx bx-right-arrow-alt"></i>اضافة وثيقة بالدولار</a>
                         </li> --}}
+                    </ul>
+                </li>
+
+                {{-- الإرسالات و المسودات --}}
+
+
+                <li>
+                    <a href="javascript:;">
+                        <div class="parent-icon"><i class="fadeIn animated bx bx-file"></i>
+                        </div>
+                        <div class="menu-title">الإرسالات و المسودات</div>
+                    </a>
+                    <ul>
+
+                        <li>
+                            <a href="{{ route('showDraft') }}"><i class="bx bx-right-arrow-alt"></i>عرض المسودات</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('sentofdraft') }}"><i class="bx bx-right-arrow-alt"></i>عرض
+                                الإرسالات</a>
+                        </li>
+
                     </ul>
                 </li>
 
@@ -144,16 +165,16 @@
                         <div class="menu-title">حالات الوثائق من خلالنا</div>
                     </a>
                     <ul>
-                        <li> <a href="{{ route('RequestCancell','1') }}">
+                        <li> <a href="{{ route('RequestCancell', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>تم تقديم طلب لإلغائها</a>
                         </li>
-                        <li> <a href="{{ route('allCancell','1') }}">
-                                <i class="bx bx-right-arrow-alt"></i>تم  إلغائها</a>
+                        <li> <a href="{{ route('allCancell', '1') }}">
+                                <i class="bx bx-right-arrow-alt"></i>تم إلغائها</a>
                         </li>
-                        <li> <a href="{{ route('allRejected','1') }}">
+                        <li> <a href="{{ route('allRejected', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>تم رفضها</a>
                         </li>
-                        <li> <a href="{{ route('requestRejected','1') }}">
+                        <li> <a href="{{ route('requestRejected', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>تم تقديم طلب لرفضها</a>
                         </li>
 
@@ -161,27 +182,27 @@
                 </li>
 
 
-                  {{-- حالات الوثائق من خلال العملاء --}}
+                {{-- حالات الوثائق من خلال العملاء --}}
 
 
 
- <li>
+                <li>
                     <a href="javascript:;">
                         <div class="parent-icon"><i class="fadeIn animated bx bx-file"></i>
                         </div>
                         <div class="menu-title">حالات الوثائق من خلال العملاء</div>
                     </a>
                     <ul>
-                        <li> <a href="{{ route('CompaniesRequestCancell','1') }}">
+                        <li> <a href="{{ route('CompaniesRequestCancell', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>تم تقديم طلب لإلغائها</a>
                         </li>
-                        <li> <a href="{{ route('companyAllCancell','1') }}">
+                        <li> <a href="{{ route('companyAllCancell', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>تم الغائها</a>
                         </li>
-                          <li> <a href="{{ route('companyRejected','1') }}">
+                        <li> <a href="{{ route('companyRejected', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>تم رفضها</a>
                         </li>
-                          <li> <a href="{{ route('requestCompanyRejected','1') }}">
+                        <li> <a href="{{ route('requestCompanyRejected', '1') }}">
                                 <i class="bx bx-right-arrow-alt"></i>تم تقديم طلب لرفضها</a>
                         </li>
 
@@ -309,8 +330,8 @@
                         </ul> --}}
                     </div>
                     <div class="user-box dropdown">
-                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{ asset('images/' . Auth::user()->avatar) }}" class="user-img"
                                 alt="user avatar">
                             <div class="user-info ps-3">
@@ -360,8 +381,9 @@
                 class='bx bxs-up-arrow-alt'></i></a>
         <!--End Back To Top Button-->
         <footer class="page-footer">
-            <p class="mb-0">Copyright © 2021. Developed By <a href="" target=".blank">فيكسيا للصناعات الدوائية
-                    </a></p>
+            <p class="mb-0">Copyright © 2021. Developed By <a href="" target=".blank">فيكسيا للصناعات
+                    الدوائية
+                </a></p>
         </footer>
     </div>
     @if (session()->has('modal'))
