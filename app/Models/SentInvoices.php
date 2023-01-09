@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SentInvoices extends Model
 {
-     protected $table = 'sentInvoices';
+     protected $table = 'sentinvoices';
       protected $casts = [
         'jsondata' => 'json'
     ];
